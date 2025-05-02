@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -97,5 +98,43 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* Custom Styles for Medical Certificate */
+@layer components {
+  .certificate-shadow {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  }
+  
+  .certificate-header {
+    @apply bg-gradient-to-r from-medical-darkBlue to-medical-blue text-white p-4;
+  }
+  
+  .certificate-border {
+    @apply border border-gray-200 rounded-md p-4;
+  }
+}
+
+/* Print Styles */
+@media print {
+  @page {
+    size: A4;
+    margin: 20mm 15mm;
+  }
+  
+  body {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  
+  .no-print {
+    display: none !important;
+  }
+}
+
+@media screen {
+  .print-only {
+    display: none !important;
   }
 }
