@@ -141,6 +141,13 @@
   .doctor-signature {
     @apply font-saint text-4xl leading-none;
   }
+  
+  .certificate-text {
+    font-family: 'Georgia', serif;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+  }
 }
 
 /* Print Styles */

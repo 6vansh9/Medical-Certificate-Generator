@@ -55,24 +55,24 @@ const MedicalCertificate: React.FC<MedicalCertificateProps> = ({ data }) => {
             CERTIFIED MEDICAL CERTIFICATE
           </h2>
 
-          <div className="space-y-4 text-medical-darkGray">
-            <p>
+          <div className="space-y-4 text-medical-darkGray font-serif">
+            <p className="certificate-text">
               This is to certify that <span className="font-bold">{data.patientName}</span> was examined by me at{" "}
               <span className="font-bold">{data.clinicName}</span> on {formatDate(data.visitDate)}.
             </p>
 
-            <p>
+            <p className="certificate-text">
               Upon examination, the patient was found to be suffering from{" "}
               <span className="font-bold">{data.medicalReason}</span>.
             </p>
 
-            <p>
+            <p className="certificate-text">
               The student has been advised rest and is medically unfit to attend
               classes/work from <span className="font-bold">{formatDate(data.restStartDate)}</span> to{" "}
               <span className="font-bold">{formatDate(data.restEndDate)}</span>.
             </p>
 
-            <p>
+            <p className="certificate-text">
               They may resume regular activities from{" "}
               <span className="font-bold">{format(resumeDate, 'MMMM d, yyyy')}</span>.
             </p>

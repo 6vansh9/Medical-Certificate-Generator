@@ -2,9 +2,10 @@
 import React, { useState } from 'react';
 import MedicalCertForm, { MedicalCertFormData } from '@/components/MedicalCertForm';
 import MedicalCertificate from '@/components/MedicalCertificate';
+import SideBySidePreview from '@/components/SideBySidePreview';
 import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { FileText, PlusCircle } from 'lucide-react';
+import { FileText, PlusCircle, LayoutPanelLeft } from 'lucide-react';
 import { toast } from 'sonner';
 
 const Index = () => {
@@ -29,14 +30,18 @@ const Index = () => {
 
       <main className="container mx-auto py-8 px-4">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-8">
+          <TabsList className="grid w-full max-w-md mx-auto grid-cols-3 mb-8">
             <TabsTrigger value="form" className="flex items-center gap-2">
               <PlusCircle className="w-4 h-4" />
-              Create Certificate
+              Create
             </TabsTrigger>
             <TabsTrigger value="preview" disabled={!certificateData} className="flex items-center gap-2">
               <FileText className="w-4 h-4" />
               Preview
+            </TabsTrigger>
+            <TabsTrigger value="compare" disabled={!certificateData} className="flex items-center gap-2">
+              <LayoutPanelLeft className="w-4 h-4" />
+              Compare
             </TabsTrigger>
           </TabsList>
 
@@ -54,6 +59,19 @@ const Index = () => {
               {certificateData && (
                 <div className="bg-white rounded-lg p-4 shadow-md print:shadow-none print:p-0">
                   <MedicalCertificate data={certificateData} />
+                </div>
+              )}
+            </TabsContent>
+            
+            <TabsContent value="compare" className="md:col-span-2">
+              {certificateData && (
+                <div>
+                  <h2 className="text-xl font-bold mb-4 text-medical-darkBlue">Font Comparison View</h2>
+                  <SideBySidePreview data={certificateData} />
+                  
+                  <div className="mt-8 bg-white rounded-lg p-4 shadow-md print:shadow-none print:p-0">
+                    <MedicalCertificate data={certificateData} />
+                  </div>
                 </div>
               )}
             </TabsContent>
