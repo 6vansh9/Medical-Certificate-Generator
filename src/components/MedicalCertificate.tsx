@@ -29,7 +29,14 @@ const MedicalCertificate: React.FC<MedicalCertificateProps> = ({ data }) => {
 
   return (
     <div className="flex flex-col">
-      <div className="bg-white shadow-md rounded-lg overflow-hidden print:shadow-none" id="certificate">
+      <div className="bg-white shadow-md rounded-lg overflow-hidden print:shadow-none relative" id="certificate">
+        {/* Watermark */}
+        <img 
+          src="/lovable-uploads/a3e843d0-6203-4599-b447-f56195af6454.png" 
+          alt="Watermark" 
+          className="certificate-watermark"
+        />
+        
         {/* Header */}
         <div className="bg-gradient-to-r from-medical-darkBlue to-medical-blue p-6 text-white flex items-center justify-between">
           <div className="flex items-center">
@@ -43,7 +50,7 @@ const MedicalCertificate: React.FC<MedicalCertificateProps> = ({ data }) => {
         </div>
 
         {/* Certificate Content */}
-        <div className="p-6 print:p-4">
+        <div className="p-6 print:p-4 relative">
           <h2 className="text-center text-2xl font-bold mb-6 text-medical-darkBlue border-b-2 border-gray-200 pb-2">
             CERTIFIED MEDICAL CERTIFICATE
           </h2>
@@ -76,19 +83,17 @@ const MedicalCertificate: React.FC<MedicalCertificateProps> = ({ data }) => {
           </div>
 
           {/* Doctor's signature and stamp */}
-          <div className="mt-20 flex justify-between items-end">
+          <div className="mt-20 flex justify-between items-end relative">
+            {/* Stamp Image */}
+            <img 
+              src="/lovable-uploads/4ec4b281-0fbf-4e22-a3be-92f44f0682e7.png" 
+              alt="Official Stamp" 
+              className="certificate-stamp"
+            />
+            
             <div className="border-t border-gray-400 pt-2 w-1/3">
               <p className="font-bold">{data.doctorName}</p>
               <p className="text-sm">{data.clinicName}</p>
-            </div>
-
-            <div className="flex items-center justify-center w-24 h-24 rounded-full border-2 border-medical-stamp bg-white opacity-80 relative">
-              <div className="absolute text-medical-stamp">
-                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path fill="currentColor" d="M19,7h-8A4,4,0,0,0,7,11v8A4,4,0,0,0,11,23h8A4,4,0,0,0,23,19V11A4,4,0,0,0,19,7ZM11,9h3v2H11Zm1,12a2,2,0,1,1,2-2A2,2,0,0,1,12,21Zm5-8H15V10h2Zm0,6H15V16h2Zm3-6H18V10h2Zm0,6H18V16h2ZM5,3A2,2,0,0,1,7,1H8V3H7V5H5ZM1,7H3V8H1ZM3,1H5V3H3ZM1,3H3V5H1ZM3,5H5V7H3Z"/>
-                </svg>
-                <div className="text-xs text-center mt-1 font-semibold">CERTIFIED</div>
-              </div>
             </div>
           </div>
           

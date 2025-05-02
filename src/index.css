@@ -114,6 +114,29 @@
   .certificate-border {
     @apply border border-gray-200 rounded-md p-4;
   }
+  
+  .certificate-watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 10;
+    width: 200px;
+    height: auto;
+  }
+  
+  .certificate-stamp {
+    position: absolute;
+    bottom: 160px;
+    right: 40px;
+    transform: rotate(-30deg);
+    width: 120px;
+    height: auto;
+    opacity: 0.8;
+    z-index: 15;
+  }
 }
 
 /* Print Styles */

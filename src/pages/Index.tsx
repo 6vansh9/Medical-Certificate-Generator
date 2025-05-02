@@ -68,29 +68,27 @@ const Index = () => {
         </div>
       </footer>
 
-      {/* Print Styles - Added to the page directly */}
-      <style jsx global>{`
-        @media print {
-          body * {
-            visibility: hidden;
+      {/* Print Styles */}
+      <style dangerouslySetInnerHTML={{
+        __html: `
+          @media print {
+            body * {
+              visibility: hidden;
+            }
+            #certificate, #certificate * {
+              visibility: visible;
+            }
+            #certificate {
+              position: absolute;
+              left: 0;
+              top: 0;
+              width: 100%;
+              padding: 0;
+              margin: 0;
+            }
           }
-          #certificate, #certificate * {
-            visibility: visible;
-          }
-          #certificate {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            padding: 0;
-            margin: 0;
-          }
-          @page {
-            size: A4;
-            margin: 20mm 15mm;
-          }
-        }
-      `}</style>
+        `
+      }} />
     </div>
   );
 };
