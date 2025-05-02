@@ -84,7 +84,7 @@ const MedicalCertificate: React.FC<MedicalCertificateProps> = ({ data }) => {
 
           {/* Doctor's signature and stamp */}
           <div className="mt-20 flex justify-between items-end relative">
-            {/* Stamp Image */}
+            {/* Stamp Image - Now positioned at bottom right */}
             <img 
               src="/lovable-uploads/4ec4b281-0fbf-4e22-a3be-92f44f0682e7.png" 
               alt="Official Stamp" 
@@ -92,7 +92,7 @@ const MedicalCertificate: React.FC<MedicalCertificateProps> = ({ data }) => {
             />
             
             <div className="border-t border-gray-400 pt-2 w-1/3">
-              <p className="font-bold">{data.doctorName}</p>
+              <p className="doctor-signature mb-1">{data.doctorName}</p>
               <p className="text-sm">{data.clinicName}</p>
             </div>
           </div>

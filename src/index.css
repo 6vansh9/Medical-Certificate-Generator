@@ -129,13 +129,17 @@
   
   .certificate-stamp {
     position: absolute;
-    bottom: 160px;
+    bottom: 40px;
     right: 40px;
     transform: rotate(-30deg);
     width: 120px;
     height: auto;
     opacity: 0.8;
     z-index: 15;
+  }
+  
+  .doctor-signature {
+    @apply font-saint text-4xl leading-none;
   }
 }
 
