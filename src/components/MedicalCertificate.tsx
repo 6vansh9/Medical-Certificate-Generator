@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { MedicalCertFormData } from './MedicalCertForm';
 import { Button } from "@/components/ui/button";
@@ -29,85 +28,55 @@ const MedicalCertificate: React.FC<MedicalCertificateProps> = ({ data }) => {
 
   return (
     <div className="flex flex-col">
-      <div className="bg-white shadow-md rounded-lg overflow-hidden print:shadow-none relative" id="certificate">
-        {/* Watermark */}
-        <img 
-          src="/lovable-uploads/a3e843d0-6203-4599-b447-f56195af6454.png" 
-          alt="Watermark" 
-          className="certificate-watermark"
-        />
-        
-        {/* Header */}
-        <div className="bg-gradient-to-r from-medical-darkBlue to-medical-blue p-6 text-white flex items-center justify-between">
-          <div className="flex items-center">
-            <div className="text-white text-4xl mr-2">+</div>
-            <h1 className="text-2xl md:text-3xl font-bold">{data.clinicName}</h1>
-          </div>
-          <div className="flex flex-col items-end text-sm">
-            <p>{data.clinicAddress}</p>
-            <p>Tel: {data.contactNumber}</p>
-          </div>
-        </div>
-
-        {/* Certificate Content */}
-        <div className="p-6 print:p-4 relative">
-          <h2 className="text-center text-2xl font-bold mb-6 text-medical-darkBlue border-b-2 border-gray-200 pb-2">
-            CERTIFIED MEDICAL CERTIFICATE
-          </h2>
-
-          <div className="space-y-4 text-medical-darkGray font-serif">
-            <p className="certificate-text">
-              This is to certify that <span className="font-bold">{data.patientName}</span> was examined by me at{" "}
-              <span className="font-bold">{data.clinicName}</span> on {formatDate(data.visitDate)}.
-            </p>
-
-            <p className="certificate-text">
-              Upon examination, the patient was found to be suffering from{" "}
-              <span className="font-bold">{data.medicalReason}</span>.
-            </p>
-
-            <p className="certificate-text">
-              The student has been advised rest and is medically unfit to attend
-              classes/work from <span className="font-bold">{formatDate(data.restStartDate)}</span> to{" "}
-              <span className="font-bold">{formatDate(data.restEndDate)}</span>.
-            </p>
-
-            <p className="certificate-text">
-              They may resume regular activities from{" "}
-              <span className="font-bold">{format(resumeDate, 'MMMM d, yyyy')}</span>.
-            </p>
-
-            <p className="mt-8">
-              Issued on: <span className="font-bold">{format(new Date(), 'MMMM d, yyyy')}</span>
-            </p>
-          </div>
-
-          {/* Doctor's signature and stamp */}
-          <div className="mt-20 flex justify-between items-end relative">
-            {/* Stamp Image - Now positioned at bottom right */}
-            <img 
-              src="/lovable-uploads/4ec4b281-0fbf-4e22-a3be-92f44f0682e7.png" 
-              alt="Official Stamp" 
-              className="certificate-stamp"
-            />
-            
-            <div className="border-t border-gray-400 pt-2 w-1/3">
-              <p className="doctor-signature mb-1">{data.doctorName}</p>
-              <p className="text-sm">{data.clinicName}</p>
+      <div className="flex flex-col items-center">
+        <div className="certificate-container" id="certificate" style={{padding: 0, border: 'none', boxShadow: 'none', borderRadius: 18, background: '#fff'}}>
+          {/* Header */}
+          <div className="prescription-header" style={{background: 'linear-gradient(120deg, #e74c63 80%, #fff 100%)'}}>
+            <div className="prescription-header-left">
+              <img src="/caduceus.png" alt="Medical Illustration" className="prescription-header-img" onError={e => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://upload.wikimedia.org/wikipedia/commons/6/6b/Medical_caduceus.svg'; }} />
+            </div>
+            <div className="prescription-header-right">
+              <div className="prescription-doctor-name" style={{color: '#fff', fontWeight: 800}}>{data.doctorName || 'Dr. John Smith'}</div>
+              <div className="prescription-doctor-degree" style={{color: '#f8e9ec', fontWeight: 600}}>{data.clinicName || 'Clinic Name'}</div>
             </div>
           </div>
-          
-          <div className="mt-8 text-xs text-gray-500 flex justify-between items-center">
-            <div className="flex items-center gap-2">
-              <span className="inline-block mr-1">📅</span> Issued: {format(new Date(), 'MMMM d, yyyy')}
+          <div className="prescription-divider" />
+          {/* Body */}
+          <div className="prescription-body">
+            {/* Left: Notes/Prescription */}
+            <div className="prescription-left">
+              <div className="prescription-rx">℞</div>
+              <div className="prescription-date">DATE: {formatDate(data.visitDate)}</div>
+              <div className="prescription-notes">
+                This is to certify that {data.patientName || 'Patient Name'} was examined by me at {data.clinicName || 'Clinic Name'} on {formatDate(data.visitDate)}. Upon examination, the patient was found to be suffering from {data.medicalReason || 'Medical Reason'}. The student has been advised rest and is medically unfit to attend classes or work from {formatDate(data.restStartDate)} to {formatDate(data.restEndDate)}. They may resume regular activities from {format(add(parseISO(data.restEndDate), { days: 1 }), 'MMMM d, yyyy')}.
+              </div>
+              <img src="/lovable-uploads/a3e843d0-6203-4599-b447-f56195af6454.png" alt="Watermark" className="prescription-watermark" />
             </div>
-            <div className="flex items-center gap-2">
-              <span className="inline-block mr-1">⏱️</span> {format(new Date(), 'h:mm a')}
+            {/* Right: Patient Info */}
+            <div className="prescription-right" style={{background: '#f8fafd', borderRadius: 12, boxShadow: '-2px 0 8px rgba(0,0,0,0.03)'}}>
+              <div>
+                <div className="prescription-label">NAME</div>
+                <div className="prescription-value">{data.patientName || 'Patient Name'}</div>
+              </div>
+              <div>
+                <div className="prescription-label">ADDRESS</div>
+                <div className="prescription-value">{data.clinicAddress || '—'}</div>
+              </div>
+            </div>
+          </div>
+          <div className="prescription-divider" />
+          {/* Footer */}
+          <div className="prescription-footer" style={{background: '#e74c63', color: '#fff'}}>
+            <div className="prescription-footer-contact">
+              <span className="prescription-footer-icon">📞</span> {data.contactNumber || '123-456-7890'}
+              <span className="prescription-footer-icon">📍</span> {data.clinicAddress || 'Street address here, City, State, Zip Code'}
+            </div>
+            <div>
+              <span className="prescription-footer-icon">🕒</span> {format(new Date(), 'EEE, MMM d, h:mm a')}
             </div>
           </div>
         </div>
       </div>
-
       <div className="mt-4 flex justify-center print:hidden">
         <Button onClick={printCertificate} className="bg-medical-blue hover:bg-medical-darkBlue flex gap-2">
           <Printer size={16} />
@@ -119,3 +88,4 @@ const MedicalCertificate: React.FC<MedicalCertificateProps> = ({ data }) => {
 };
 
 export default MedicalCertificate;
+
